@@ -1,7 +1,17 @@
 ## Function Creators
 def mkFn0(fn):
     def func():
-        return fn()
+        # Specially, `{}` in JavaScript
+        # is translated to `()` in Python,
+        # if `{}` means Unit here.
+        # The reason why we don't use
+        # `{}` in Python to stand for
+        # Unit is, `()` is a constant
+        # but `{}` creates an empty
+        # in execution time.
+        # `fn` does accept Unit,
+        # see https://github.com/purescript/purescript-functions/blob/master/src/Data/Function/Uncurried.purs#L39
+        return fn(())
     return func
 
 def mkFn2(fn):
